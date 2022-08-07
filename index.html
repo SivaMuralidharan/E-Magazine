@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1200">
+	<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="turn.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title></title>
+</head>
+<body>
+	
+	<div class="splash">
+		<a class="prev"  id="prevBtn" onclick="plusSlides(-1)">❮</a>
+		<a class="next" id="nextBtn" onclick="plusSlides(1)">❯</a>
+		<div class="center">
+			<div id="flipbook">
+				<div class="hard">Book</div>
+				<div class="hard"></div>
+
+				<div class="page">1</div>
+				<div class="page">2</div>
+				<div class="page">3</div>
+				<div class="page">4</div>
+
+				<div class="hard"></div>
+				<div class="hard">Thank You!</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+	$("#flipbook").turn({
+		display:'double',
+		acceleration: true,
+		gradients: true,
+		elevation: 50,
+		autoCenter: true
+	});
+
+	$("#pageFld").val($("#flipbook").turn("page"));
+
+	$("#flipbook").bind("turned", function(event, page, view) {
+		$("#pageFld").val(page);
+	});
+
+	$("#pageFld").change(function() {
+		$("#flipbook").turn("page", $(this).val());
+	});
+
+	$("#prevBtn").click(function() {
+		$("#flipbook").turn("previous");
+	});
+
+	$("#nextBtn").click(function() {
+		$("#flipbook").turn("next");
+	});
+</script>
